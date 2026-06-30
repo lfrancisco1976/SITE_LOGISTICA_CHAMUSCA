@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 10px; background: transparent; }
+        .container { max-width: 1000px; margin: auto; background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .chart-box { height: 400px; margin-bottom: 35px; }
+        .table-box { overflow-x: auto; border: 1px solid #eee; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; color: #333; }
+        th, td { padding: 12px; border: 1px solid #f0f0f0; text-align: center; }
+        th, .first-col { background: #f8f9fa; font-weight: bold; text-align: left; position: sticky; left: 0; z-index: 2; }
+        .total-row { background: #f1f5f9 !important; font-weight: bold; color: #000; }
+        h3 { text-align: center; color: #1e293b; font-size: 18px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Relatório de Quilometragem por Motorista e Viatura</h3>
+    <div class="chart-box"><canvas id="graficoEmpilhado"></canvas></div>
+    <div id="tabelaResumo" class="table-box"></div>
+</div>
+
+<script>
+const spreadsheetID = '1JmXwJJuFsPoltWICuIJNjBfPDlwgwR-sqKCARU4U84M';
+const csvURL = `https://docs.google.com/spreadsheets/d/${spreadsheetID}/export?format=csv&gid=0`;
+
+async function processarDados() {
+    Papa.parse(csvURL, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+            const linhas = results.data;
+            const motoristas = {};
+            const todasViaturas = new Set();
+
+            linhas.forEach(row => {
+                const m = row['Motorista'] ? row['Motorista'].trim() : null;
+                const v = row['Viatura'] ? row['Viatura'].trim() : null;
+                const kmStr = row['Km percorrido']?.toString().replace(/\D/g, '') || "0";
+                const km = parseInt(kmStr, 10);
+
+                if (m && v) {
+                    if (!motoristas[m]) motoristas[m] = { total: 0 };
+                    if (!motoristas[m][v]) motoristas[m][v] = 0;
+                    motoristas[m][v] += km;
+                    motoristas[m].total += km;
+                    todasViaturas.add(v);
+                }
+            });
+
+            const listaMotoristas = Object.keys(motoristas).sort((a, b) => motoristas[b].total - motoristas[a].total);
+            const listaViaturas = Array.from(todasViaturas).sort();
+
+            desenharGrafico(listaMotoristas, listaViaturas, motoristas);
+            desenharTabela(listaMotoristas, listaViaturas, motoristas);
+        }
+    });
+}
+
+function desenharGrafico(labels, viaturas, dados) {
+    const cores = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899'];
+    const datasets = viaturas.map((v, i) => ({
+        label: v,
+        data: labels.map(m => dados[m][v] || 0),
+        backgroundColor: cores[i % cores.length],
+        // CONFIGURAÇÃO DA LARGURA DAS BARRAS
+        barPercentage: 0.4,       // Reduzido para cerca de metade da largura
+        categoryPercentage: 0.6   // Espaçamento entre os grupos de motoristas
+    }));
+
+    new Chart(document.getElementById('graficoEmpilhado'), {
+        type: 'bar',
+        data: { labels: labels, datasets: datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { 
+                x: { stacked: true, grid: { display: false } }, 
+                y: { stacked: true, beginAtZero: true } 
+            },
+            plugins: { 
+                legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20 } }
+            }
+        }
+    });
+}
+
+function desenharTabela(motoristas, viaturas, dados) {
+    let html = '<table><thead><tr><th class="first-col">Viatura</th>';
+    motoristas.forEach(m => html += `<th>${m}</th>`);
+    html += '<th>TOTAL</th></tr></thead><tbody>';
+
+    let somaGlobal = 0;
+    const totaisMotorista = {};
+    motoristas.forEach(m => totaisMotorista[m] = 0);
+
+    viaturas.forEach(v => {
+        html += `<tr><td class="first-col">${v}</td>`;
+        let somaViatura = 0;
+        motoristas.forEach(m => {
+            const valor = dados[m][v] || 0;
+            html += `<td>${valor.toLocaleString('pt-PT')}</td>`;
+            somaViatura += valor;
+            totaisMotorista[m] += valor;
+        });
+        html += `<td style="font-weight:bold">${somaViatura.toLocaleString('pt-PT')}</td></tr>`;
+        somaGlobal += somaViatura;
+    });
+
+    html += '<tr class="total-row"><td class="first-col">TOTAL GERAL</td>';
+    motoristas.forEach(m => html += `<td>${totaisMotorista[m].toLocaleString('pt-PT')}</td>`);
+    html += `<td>${somaGlobal.toLocaleString('pt-PT')}</td></tr></tbody></table>`;
+
+    document.getElementById('tabelaResumo').innerHTML = html;
+}
+
+window.onload = processarDados;
+</script>
+</body>
+</html>
