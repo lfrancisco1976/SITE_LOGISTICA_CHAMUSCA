@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EGEO Logística - Dashboard</title>
+    <title>EGEO Logística - Portal</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Ícones modernos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+    <!-- Barra de Navegação Superior -->
     <header class="navbar">
         <div class="logo">
             <i class="fa-solid fa-truck-fast"></i> <span>EGEO LOG</span>
@@ -20,31 +22,79 @@
         </button>
         <nav class="nav-links" id="nav-links">
             <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a>
-            <a href="condutores.html"><i class="fa-solid fa-users"></i> Condutores</a>
-            <a href="contactos.html"><i class="fa-solid fa-envelope"></i> Contactos</a>
+            <a href="https://script.google.com/macros/s/AKfycbyLQzzTlHEViQP5X2bYWOnzIhwxqU705R1dmaAK81Zvnnj3vsTiNvL80Lgo9dGkFwEz/exec" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-id-card"></i> Registo Giro</a>
+            <a href="https://lfrancisco1976.github.io/planeamento_meios_egeo/view2.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-calendar-days"></i> Planeamento</a>
+            <a href="https://lfrancisco1976.github.io/SITE_LOGISTICA_CHAMUSCA/dashboard.html" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="https://lfrancisco1976.github.io/consultagiros26" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-clock-rotate-left"></i> Serviços</a>
         </nav>
     </header>
 
+    <!-- Conteúdo Principal -->
     <main class="container">
         <section class="hero">
             <h1>Portal de Logística</h1>
-            <p>Gestão eficiente, acessível em qualquer lugar.</p>
+            <p>Aceda rapidamente a todas as ferramentas e formulários operacionais.</p>
         </section>
 
+        <!-- Grid de Cartões Modernos (Responsivo) -->
         <div class="grid-links">
-            <a href="condutores.html" class="card">
+            
+            <!-- REGISTO GIRO -->
+            <a href="https://script.google.com/macros/s/AKfycbyLQzzTlHEViQP5X2bYWOnzIhwxqU705R1dmaAK81Zvnnj3vsTiNvL80Lgo9dGkFwEz/exec" target="_blank" rel="noopener noreferrer" class="card">
                 <i class="fa-solid fa-id-card icon"></i>
-                <h3>Registo de Giro</h3>
-                <p>Aceda ao formulário e histórico de rotas dos motoristas.</p>
-                <span class="btn-ver">Entrar <i class="fa-solid fa-arrow-right"></i></span>
+                <h3>Registo Giro</h3>
+                <p>Introdução de dados diários de serviço, quilometragem e consumo para motoristas.</p>
+                <span class="btn-ver">Abrir Aplicação <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             </a>
             
-            <a href="#" class="card">
-                <i class="fa-solid fa-clipboard-list icon"></i>
+            <!-- PLANEAMENTO -->
+            <a href="https://lfrancisco1976.github.io/planeamento_meios_egeo/view2.html" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-calendar-days icon"></i>
                 <h3>Planeamento</h3>
-                <p>Consulte as rotas e serviços agendados para a frota.</p>
-                <span class="btn-ver">Entrar <i class="fa-solid fa-arrow-right"></i></span>
+                <p>Consulta do planeamento de meios, rotas operacionais e distribuição de serviços.</p>
+                <span class="btn-ver">Consultar Escala <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
             </a>
+
+            <!-- DASHBOARD -->
+            <a href="https://lfrancisco1976.github.io/SITE_LOGISTICA_CHAMUSCA/dashboard.html" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-chart-pie icon"></i>
+                <h3>Dashboard</h3>
+                <p>Painel de controlo analítico e visualização de indicadores de logística.</p>
+                <span class="btn-ver">Ver Indicadores <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+
+            <!-- SERVIÇOS REALIZADOS -->
+            <a href="https://lfrancisco1976.github.io/consultagiros26" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-clock-rotate-left icon"></i>
+                <h3>Serviços Realizados</h3>
+                <p>Consulta detalhada do histórico de giros e registos efetuados pela frota.</p>
+                <span class="btn-ver">Consultar Histórico <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+
+            <!-- IMP 094 - VERIF. EQUIPAMENTOS -->
+            <a href="https://script.google.com/macros/s/AKfycbyaoGx_xUvnFi4rLAtbYSLjI2D2vB3oUbISHwLkFXqv55hNpqbGWpo7GFK8EmeCEm3E/exec" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-clipboard-check icon"></i>
+                <h3>IMP 094 - Verif. Equipamentos</h3>
+                <p>Formulário digital para a listagem de verificação e inspeção técnica de viaturas.</p>
+                <span class="btn-ver">Preencher IMP 094 <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+
+            <!-- FÉRIAS -->
+            <a href="https://lfrancisco1976.github.io/SITE_LOGISTICA_CHAMUSCA/ferias.html" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-umbrella-beach icon"></i>
+                <h3>Férias</h3>
+                <p>Consulta do mapa de férias da equipa e agendamento de dias de descanso.</p>
+                <span class="btn-ver">Ver Calendário <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+
+            <!-- MOVIMENTAÇÃO CONTENTORES -->
+            <a href="https://script.google.com/macros/s/AKfycby_sweXxlTFR-CPlZrwkUO-Qi_7bD7j3YM84RtExLX5f4-d7O6NXlAWOsmNVJ5G_Wbs/exec" target="_blank" rel="noopener noreferrer" class="card">
+                <i class="fa-solid fa-boxes-stacked icon"></i>
+                <h3>Movimentação Contentores</h3>
+                <p>Registo e controlo de fluxos, entradas, saídas e posições de contentores.</p>
+                <span class="btn-ver">Registar Fluxo <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+
         </div>
     </main>
 
