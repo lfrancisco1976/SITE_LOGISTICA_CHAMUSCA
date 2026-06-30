@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGEO Logística - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-truck-fast"></i> <span>EGEO LOG</span>
+        </div>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a>
+            <a href="condutores.html"><i class="fa-solid fa-users"></i> Condutores</a>
+            <a href="contactos.html"><i class="fa-solid fa-envelope"></i> Contactos</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Portal de Logística</h1>
+            <p>Gestão eficiente, acessível em qualquer lugar.</p>
+        </section>
+
+        <div class="grid-links">
+            <a href="condutores.html" class="card">
+                <i class="fa-solid fa-id-card icon"></i>
+                <h3>Registo de Giro</h3>
+                <p>Aceda ao formulário e histórico de rotas dos motoristas.</p>
+                <span class="btn-ver">Entrar <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+            
+            <a href="#" class="card">
+                <i class="fa-solid fa-clipboard-list icon"></i>
+                <h3>Planeamento</h3>
+                <p>Consulte as rotas e serviços agendados para a frota.</p>
+                <span class="btn-ver">Entrar <i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
