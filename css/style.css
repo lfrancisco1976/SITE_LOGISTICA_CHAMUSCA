@@ -223,3 +223,58 @@ body {
         font-size: 1.8rem;
     }
 }
+/* Estilos para o iFrame de conteúdo (se pretender embutir as páginas antigas direto nesta estrutura) */
+.conteudo-pagina {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    margin-bottom: 2rem;
+    min-height: 400px;
+}
+
+.iframe-conteudo {
+    width: 100%;
+    height: 650px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Centralização e Design do Botão de Voltar no Rodapé */
+.action-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.btn-voltar-inicio {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--primary);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 30px; /* Formato de pílula moderno */
+    box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2);
+    transition: var(--transition);
+}
+
+.btn-voltar-inicio:hover {
+    background-color: #165b94; /* Tom ligeiramente mais claro para o efeito hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(15, 76, 129, 0.3);
+}
+
+/* Ajuste no telemóvel para o botão ocupar a largura quase total se necessário */
+@media (max-width: 480px) {
+    .btn-voltar-inicio {
+        width: 100%;
+        justify-content: center;
+    }
+    .iframe-conteudo {
+        height: 500px; /* Ajusta altura do frame em ecrãs pequenos */
+    }
+}
